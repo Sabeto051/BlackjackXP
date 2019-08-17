@@ -95,7 +95,6 @@ function newCarta(carta) {
     valor,
     pinta,
     numero: numero + 1
-
   };
 }
 
