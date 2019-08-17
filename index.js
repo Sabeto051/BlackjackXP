@@ -24,8 +24,9 @@ function cartaAdcional() {
   // Si el contador de la casa es menor o igual a 16, se añade una nueva carta
   if (contadorCasa <= 16) {
     // Se crea un nuevo Span con id "casa#" donde '#' es el número siguiente de tags casa
-    newSpan.setAttribute("id", `casa${casa.length}`);
     let newSpan = document.createElement("SPAN");
+    newSpan.setAttribute("id", `casa${casa.length}`);
+    
     // Se crea una nueva carta y se pushea al arreglo de casa
     casa.push(newCarta(Math.floor(Math.random() * 52 + 1)));
     // Se le añade el número de la carta al nuevo Span
