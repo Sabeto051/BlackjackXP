@@ -1,7 +1,6 @@
 var casa = [];
 var jug1 = [];
 var victorioso=0;
-
 //funcion que genera 4 numeros aleatorios y los imprime en los parrafos demo1, 2, 3 y 4
 function myFunction() {
   //Ciclo para generar los 4 números aleatorios
@@ -17,20 +16,29 @@ function myFunction() {
     }
   }
 }
-//Verifica que ningún jugador se pase del conteo de 21 puntos
 function verificarGanador() {
+  // Aca segun el que se paso se dice quien gano y se le asigna un valor a victorioso
   var contJug=contarCartas("jugador");
   var contCasa=contarCartas("casa");
-  if (contJug>21||contCasa>21) {
-    victorioso=1;
-  }
+  if (contJug>21&&contCasa>21){
+    victorioso=3;
+  }else if (contCasa>21){
+    victorioso=2;
+  }else if(contJug>21)
+   victorioso=1;
 }
 //Esta función genera una carta adicional al jugador
 function cartaAdcional() {
   //Antes de adicionar carta se verifica que no exista ganador
   verificarGanador();
   if(victorioso!=0){
-    alert("Ya hay perdedor");
+    if(victorioso==1){
+      alert("La casa gano")
+    }else if(victorioso==2){
+      alert("El jugador gano")}
+      else{
+        alert("Ambos perdieron")
+      }
   }else{
       //Contamos las cartas actuales del jugador y la casa
       var contadorCasa = contarCartas("casa");
@@ -61,7 +69,6 @@ function cartaAdcional() {
       if (contadorJug > 21) alert("Jugador pierde!");
     }
   }
-
 //Retorna la suma de las cartas
 function contarCartas(jugador) {
   var contador = 0;
@@ -128,7 +135,9 @@ function newCarta(carta) {
   var valor = valor == 1? 11:valor;
   
   return {
+    valor,
     pinta,
     numero: numero + 1
+
   };
 }
