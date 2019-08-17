@@ -4,12 +4,14 @@ var victorioso=0;
 
 //funcion que genera 4 numeros aleatorios y los imprime en los parrafos demo1, 2, 3 y 4
 function myFunction() {
+  
   //Ciclo para generar los 4 números aleatorios
   for (i = 0; i < 4; i++) {
     /*se agrega el número en el HTML de acuerdo a la etiqueta demo*/
     if (i < 2) {
       casa.push(newCarta(Math.floor(Math.random() * 52 + 1)));
       $("#casa" + (i + 1)).html(casa[i].numero);
+
       //counterIdCasa = i + 1;
     } else {
       jug1.push(newCarta(Math.floor(Math.random() * 52 + 1)));
@@ -18,6 +20,7 @@ function myFunction() {
   }
 
   
+
   document.getElementById('casa').style.display = 'inline-block';
   document.getElementById('jugador').style.display = 'block';
 }
@@ -43,7 +46,7 @@ function cartaAdcional() {
       if (contadorCasa <= 16) {
         // Se crea un nuevo Span con id "casa#" donde '#' es el número siguiente de tags casa
         let newSpan = document.createElement("SPAN");
-        newSpan.setAttribute("id", `casa${casa.length}`);
+        newSpan.setAttribute("id", `${casa[casa.length-1].pinta}`);
 
         // Se crea una nueva carta y se pushea al arreglo de casa
         casa.push(newCarta(Math.floor(Math.random() * 52 + 1)));
@@ -57,9 +60,15 @@ function cartaAdcional() {
       if (contadorCasa > 21) alert("La Casa pierde");
 
       //Se le agrega una carta al usuario (en el arreglo y en el html).
+      let newSpan = document.createElement("SPAN");
+      newSpan.setAttribute("id", `${jug1[jug1.length-1].pinta}`);
       jug1.push(newCarta(Math.floor(Math.random() * 52 + 1)));
-      $("#jugador").append("<span id='jugador" + jug1.length + "'></span>");
-      $("#jugador" + jug1.length).html(jug1[jug1.length - 1].numero + " ");
+      //$("#jugador").append("<span id='jugador" + jug1.length +"'></span>");
+      //$("#jugador" + jug1.length).html(jug1[jug1.length - 1].numero + " ");
+      newSpan.innerHTML = " " + jug1[jug1.length - 1].numero;
+
+      // Se le añade como hijo el nuevo Span al div de id 'jugador'
+      document.getElementById("jugador").appendChild(newSpan);
 
       //Se revisa si el usuario perdio
       if (contadorJug > 21) alert("Jugador pierde!");
@@ -98,7 +107,7 @@ function newCarta(carta) {
     return -1;
   }
 
-  pintas = ["diamante", "corazon", "trevol", "pica"];
+  pintas = ["diamante", "corazon", "trebol", "pica"];
   // se obtiene una posición del array de pintas
   var posPinta = Math.floor((carta - 1) / 13);
   var pinta = pintas[posPinta];

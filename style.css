@@ -16,6 +16,14 @@
     display:none;
   }
 
+  #trebol, #pica{
+    color:black;
+  }
+
+  #diamante, #corazon{
+    color:red;
+  }
+
 span {
     background:#fff;
     border: 1px solid gray;
