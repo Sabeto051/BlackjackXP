@@ -1,7 +1,6 @@
 var casa = [];
 var jug1 = [];
 var victorioso=0;
-
 //funcion que genera 4 numeros aleatorios y los imprime en los parrafos demo1, 2, 3 y 4
 function myFunction() {
   //Ciclo para generar los 4 números aleatorios
@@ -17,20 +16,29 @@ function myFunction() {
     }
   }
 }
-//Verifica que ningún jugador se pase del conteo de 21 puntos
 function verificarGanador() {
+  // Aca segun el que se paso se dice quien gano y se le asigna un valor a victorioso
   var contJug=contarCartas("jugador");
   var contCasa=contarCartas("casa");
-  if (contJug>21||contCasa>21) {
-    victorioso=1;
-  }
+  if (contJug>21&&contCasa>21){
+    victorioso=3;
+  }else if (contCasa>21){
+    victorioso=2;
+  }else if(contJug>21)
+   victorioso=1;
 }
 //Esta función genera una carta adicional al jugador
 function cartaAdcional() {
   //Antes de adicionar carta se verifica que no exista ganador
   verificarGanador();
   if(victorioso!=0){
-    alert("Ya hay perdedor");
+    if(victorioso==1){
+      alert("La casa gano")
+    }else if(victorioso==2){
+      alert("El jugador gano")}
+      else{
+        alert("Ambos perdieron")
+      }
   }else{
       //Contamos las cartas actuales del jugador y la casa
       var contadorCasa = contarCartas("casa");
@@ -61,7 +69,6 @@ function cartaAdcional() {
       if (contadorJug > 21) alert("Jugador pierde!");
     }
   }
-
 //Retorna la suma de las cartas
 function contarCartas(jugador) {
   var contador = 0;
@@ -69,13 +76,13 @@ function contarCartas(jugador) {
   //Si recibe el parametro jugador, suma los numeros de las cartas del arreglo jug1
   if (jugador == "jugador") {
     for (i = 0; i < jug1.length; i++) {
-      contador += jug1[i].numero;
+      contador += jug1[i].valor;
     }
 
   //Si recibe el parametro casa, suma los numeros de las cartas del arreglo casa
   } else if (jugador == "casa") {
     for (i = 0; i < casa.length; i++) {
-      contador += casa[i].numero;
+      contador += casa[i].valor;
     }
   } else return -1; //Si recibe un parametro invalido, retorna -1. ES UN ERROR
   return contador;
@@ -100,8 +107,18 @@ function newCarta(carta) {
   var pinta = pintas[posPinta];
   // se obtiene un número "legible" para el computador
   var numero = (carta - 1) % 13;
-  return {
+  var valor = numero < 10? numero+1 :10;
+  var valor = valor == 1? 11:valor;
+  console.log({
+    valor,
     pinta,
     numero: numero + 1
+
+  });
+  return {
+    valor,
+    pinta,
+    numero: numero + 1
+
   };
 }
