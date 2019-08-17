@@ -75,43 +75,27 @@ function apostar(apuesta){
   apuestatotal=apuestatotal+apuesta;
   document.getElementById("Apuesta").innerHTML=apuestatotal;
 }
+function limpiarapuesta(){
+  apuestatotal=0;
+  document.getElementById("Apuesta").innerHTML=apuestatotal;
+}
 //Retorna la suma de las cartas
 function contarCartas(jugador) {
   var contador = 0;
 
   //Si recibe el parametro jugador, suma los numeros de las cartas del arreglo jug1
   if (jugador == "jugador") {
-    // se cuentas las carta del jugador 
-   contador = contarCartasDeJugador(jug1);
+    for (i = 0; i < jug1.length; i++) {
+      contador += jug1[i].valor;
+    }
 
   //Si recibe el parametro casa, suma los numeros de las cartas del arreglo casa
   } else if (jugador == "casa") {
-     // se cuentas las carta del jugador 
-    contador = contarCartasDeJugador(casa);
-
+    for (i = 0; i < casa.length; i++) {
+      contador += casa[i].valor;
+    }
   } else return -1; //Si recibe un parametro invalido, retorna -1. ES UN ERROR
   return contador;
-}
-
-function contarCartasDeJugador(arr) {
-    // se inicializa un contador 
-    var contador = 0;
-
-    // se itera la cartas de jugador y se suman 
-    for (i = 0; i < arr.length; i++) {
-      contador += arr[i].valor;
-    }
-
-    // se itera la cartas de jugador  y se suman teniendo cuenta que las cartas son mayores  23 a se cambia el 11 por el 1
-    if(contador > 21){
-      contador = 0;
-      for (i = 0; i < arr.length; i++) {
-        contador += arr[i].valor == 11 ? 1 :jug1[i].valor;
-      }
-    }
-
-    console.log('contador '+ contador);
-    return contador;
 }
 
 /*
@@ -133,10 +117,14 @@ function newCarta(carta) {
   var pinta = pintas[posPinta];
   // se obtiene un número "legible" para el computador
   var numero = (carta - 1) % 13;
-  //se valida si el numero de la carta es menor a 10 se deja el mismo valor sino se pone un valor de 10 
   var valor = numero < 10? numero+1 :10;
-  // se valida si el numero es 1  se deja 11 como valor inicial 
   var valor = valor == 1? 11:valor;
+  console.log({
+    valor,
+    pinta,
+    numero: numero + 1
+
+  });
   return {
     valor,
     pinta,
