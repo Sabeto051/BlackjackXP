@@ -1,0 +1,37 @@
+#container{
+    position: absolute;
+    
+}
+
+#casa {
+    position: relative;
+    width:100%;
+}
+
+  /*#jugador:first-child {margin-left:0;}*/
+
+  #jugador{
+    width: 100%;
+    position: relative;
+  }
+
+span {
+    background:#fff;
+    border: 1px solid gray;
+    border-radius:4px;
+      -moz-border-radius:4px;
+      -webkit-border-radius:4px;
+    -moz-box-shadow:0 2px 2px 1px #999;
+      -webkit-box-shadow:0px 2px 2px 1px #999;
+      box-shadow:0 2px 2px 1px #999;
+    font-size: 20pt;
+    float: left;
+    width:  3.75em;
+    height: 5em;
+    padding:.1em;
+    margin-right:-1em;
+   font-family:serif;
+  }
+
+
+ 

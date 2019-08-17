@@ -78,7 +78,7 @@ function newCarta(carta) {
     return -1;
   }
 
-  pintas = ["diamante", "corazon", "trevol", "pica"];
+  pintas = ["diamante", "corazon", "trebol", "pica"];
   // se obtiene una posición del array de pintas
   var posPinta = Math.floor((carta - 1) / 13);
   var pinta = pintas[posPinta];
@@ -89,4 +89,7 @@ function newCarta(carta) {
     numero: numero + 1
   };
 }
+
+
+
 
