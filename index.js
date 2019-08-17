@@ -74,14 +74,14 @@ function contarCartasDeJugador(arr) {
       contador += arr[i].valor;
     }
 
-    // se itera la cartas de jugador  y se suman teniendo cuenta que las cartas son mayores a 1
+    // se itera la cartas de jugador  y se suman teniendo cuenta que las cartas son mayores  23 a se cambia el 11 por el 1
     if(contador > 21){
       contador = 0;
       for (i = 0; i < arr.length; i++) {
         contador += arr[i].valor == 11 ? 1 :jug1[i].valor;
       }
     }
-    
+
     console.log('contador '+ contador);
     return contador;
 }
