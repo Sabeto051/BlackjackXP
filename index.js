@@ -85,14 +85,12 @@ function newCarta(carta) {
   var pinta = pintas[posPinta];
   // se obtiene un número "legible" para el computador
   var numero = (carta - 1) % 13;
-  var valor = numero < 10? numero+1 :10;
-  var valor = valor == 1? 11:valor;
-  console.log({
-    valor,
-    pinta,
-    numero: numero + 1
 
-  });
+  //se valida si el numero de la carta es menor a 10 se deja el mismo valor sino se pone un valor de 10 
+  var valor = numero < 10? numero+1 :10;
+  // se valida si el numero es 1  se deja 11 como valor inicial 
+  var valor = valor == 1? 11:valor;
+  
   return {
     valor,
     pinta,
