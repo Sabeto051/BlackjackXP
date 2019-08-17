@@ -85,9 +85,19 @@ function newCarta(carta) {
   var pinta = pintas[posPinta];
   // se obtiene un número "legible" para el computador
   var numero = (carta - 1) % 13;
-  return {
+  var valor = numero < 10? numero+1 :10;
+  var valor = valor == 1? 11:valor;
+  console.log({
+    valor,
     pinta,
     numero: numero + 1
+
+  });
+  return {
+    valor,
+    pinta,
+    numero: numero + 1
+
   };
 }
 
