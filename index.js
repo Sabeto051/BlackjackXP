@@ -82,11 +82,13 @@ function newCarta(carta) {
   // se obtiene una posición del array de pintas
   var posPinta = Math.floor((carta - 1) / 13);
   var pinta = pintas[posPinta];
-  // se obtiene un número "legible" para el computador
+  valores = ["K","Q","J","10","9","8","7","6","5","4","3","2","A"];
+  // se obtiene un número y con este el valor que toma
   var numero = (carta - 1) % 13;
+  var valor = valores[numero];
   return {
     pinta,
-    numero: numero + 1
+    valor
   };
 }
 
