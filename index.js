@@ -14,6 +14,9 @@ function myFunction() {
       $("#jugador" + (i - 1)).html(jug1[i - 2].numero);
     }
   }
+
+  document.getElementById('casa').style.display = 'inline-block';
+  document.getElementById('jugador').style.display = 'block';
 }
 //Esta función genera una carta adicional al jugador
 function cartaAdcional() {
@@ -24,8 +27,8 @@ function cartaAdcional() {
   // Si el contador de la casa es menor o igual a 16, se añade una nueva carta
   if (contadorCasa <= 16) {
     // Se crea un nuevo Span con id "casa#" donde '#' es el número siguiente de tags casa
-    newSpan.setAttribute("id", `casa${casa.length}`);
     let newSpan = document.createElement("SPAN");
+    newSpan.setAttribute("id", `casa${casa.length}`);
     // Se crea una nueva carta y se pushea al arreglo de casa
     casa.push(newCarta(Math.floor(Math.random() * 52 + 1)));
     // Se le añade el número de la carta al nuevo Span
@@ -69,7 +72,7 @@ function contarCartas(jugador) {
     newCarta(carta)
     función que recibe un int
     función que retorna un objeto con atributos (str)pinta, (int)numero
-        pinta es "diamante", "corazon", "trevol", "pica", numero va de 1 a 13
+        pinta es "diamante", "corazon", "trebol", "pica", numero va de 1 a 13
 */
 function newCarta(carta) {
   // el rango del numero tiene que estar entre 1 y 52
