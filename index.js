@@ -53,18 +53,39 @@ function contarCartas(jugador) {
 
   //Si recibe el parametro jugador, suma los numeros de las cartas del arreglo jug1
   if (jugador == "jugador") {
-    for (i = 0; i < jug1.length; i++) {
-      contador += jug1[i].numero;
-    }
+    // se cuentas las carta del jugador 
+   contador = contarCartasDeJugador(jug1);
 
   //Si recibe el parametro casa, suma los numeros de las cartas del arreglo casa
   } else if (jugador == "casa") {
-    for (i = 0; i < casa.length; i++) {
-      contador += casa[i].numero;
-    }
+     // se cuentas las carta del jugador 
+    contador = contarCartasDeJugador(casa);
+
   } else return -1; //Si recibe un parametro invalido, retorna -1. ES UN ERROR
   return contador;
 }
+
+function contarCartasDeJugador(arr) {
+    // se inicializa un contador 
+    var contador = 0;
+
+    // se itera la cartas de jugador y se suman 
+    for (i = 0; i < arr.length; i++) {
+      contador += arr[i].valor;
+    }
+
+    // se itera la cartas de jugador  y se suman teniendo cuenta que las cartas son mayores a 1
+    if(contador > 21){
+      contador = 0;
+      for (i = 0; i < arr.length; i++) {
+        contador += arr[i].valor == 11 ? 1 :jug1[i].valor;
+      }
+    }
+    
+    console.log('contador '+ contador);
+    return contador;
+}
+
 
 /* 
     newCarta(carta)
