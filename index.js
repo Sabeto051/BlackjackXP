@@ -18,21 +18,6 @@ function myFunction() {
   }
 }
 
-
-function verificarGanador() {
-  // Aca segun el que se paso se dice quien gano y se le asigna un valor a victorioso
-  var contCasa=contarCartas("casa");
-  var contJug=contarCartas("jugador");
-  if (contJug>21&&contCasa>21){
-    victorioso=3;
-  }else if (contCasa>21){
-    victorioso=2;
-  }else if(contJug>21)
-   victorioso=1;
-
-   console.log("casa "+ contCasa);
-   console.log("jugador "+ contJug);
-}
 //Esta función genera una carta adicional al jugador
 function cartaAdcional() {
   //Antes de adicionar carta se verifica que no exista ganador
@@ -47,15 +32,65 @@ function cartaAdcional() {
       }
   }else{
       //Se le agrega una carta al usuario (en el arreglo y en el html).
-
-      // jug1.push(newCarta(Math.floor(Math.random() * 52 + 1)));
-      // $("#jugador").append("<span id='jugador" + jug1.length + "'></span>");
-      // $("#jugador" + jug1.length).html(jug1[jug1.length - 1].numero + " ");
-
       agregarCarta("jugador");
-
     }
   }
+
+  function verificarGanador() {
+    // Aca segun el que se paso se dice quien gano y se le asigna un valor a victorioso
+    var contCasa=contarCartas("casa");
+    var contJug=contarCartas("jugador");
+    if (contJug>21&&contCasa>21){
+      victorioso=3;
+    }else if (contCasa>21){
+      victorioso=2;
+    }else if(contJug>21)
+     victorioso=1;
+  
+     console.log("casa "+ contCasa);
+     console.log("jugador "+ contJug);
+  }
+
+
+  //Se le agrega una carta al div parent que se especifique 
+  // casa o judagaor 
+  function agregarCarta(parent){
+    if(parent === "casa"){
+      agregarSpan(parent, casa);
+    } else if (parent === "jugador"){
+      agregarSpan(parent, jug1);
+    } else{
+      console.log("error argumento no valido: " + parent );
+    }
+  
+  }
+  
+  
+   /* Esta funcion crea un elemento span dentro del parent 
+    * @param parent 
+    *           este paramentro representa el id div padre. se debe pasar 'jugador' o 'casa'. 
+    * @param arr
+    *           este parametro es el arreglo global de cartas de dicho parent.
+    */
+  
+  function agregarSpan(parent, arr){
+  
+    // Se crea una nueva carta y se pushea al arreglo de casa
+    arr.push(newCarta(Math.floor(Math.random() * 52 + 1)));
+  
+    // guardo el id de nuevo Span en una variable
+    var spanId = parent + arr.length;
+  
+     // Se le añade como hijo el nuevo Span al div 
+    $("#"+parent).append("<span id='"+ spanId + "'></span>");
+  
+    // Se le añade el número de la carta al nuevo Span
+    $("#"+spanId).html(arr[arr.length - 1].numero + " ");
+  
+    console.log(spanId +" "+arr[arr.length - 1].numero);
+  }
+  
+  
 //Retorna la suma de las cartas
 function contarCartas(jugador) {
   var contador = 0;
@@ -73,6 +108,7 @@ function contarCartas(jugador) {
   } else return -1; //Si recibe un parametro invalido, retorna -1. ES UN ERROR
   return contador;
 }
+
 
 function contarCartasDeJugador(arr) {
     // se inicializa un contador 
@@ -138,25 +174,9 @@ function plantar(){
     
     while( contadorCasa <= 16  &&  !(contadorJug > 21)){
 
-      // Se crea un nuevo Span con id "casa#" donde '#' es el número siguiente de tags casa
-      let newSpan = document.createElement("SPAN");
-      newSpan.setAttribute("id",`casa${casa.length}`); 
-
-      console.log(casa);
-
       agregarCarta("casa");
 
-      // // Se crea una nueva carta y se pushea al arreglo de casa
-      // casa.push(newCarta(Math.floor(Math.random() * 52 + 1)));
-      // // Se le añade el número de la carta al nuevo Span
-      // newSpan.innerHTML = " " + casa[casa.length - 1].numero;
-
-      // // Se le añade como hijo el nuevo Span al div de id 'casa'
-      // document.getElementById("casa").appendChild(newSpan); 
-      
-      
-      console.log('corriendo...');
-
+      //actualizo los contadores 
       contadorJug = contarCartas("jugador");
       contadorCasa = contarCartas("casa");
 
@@ -180,40 +200,7 @@ function plantar(){
 
 }
 
-function agregarCarta(parent){
-  if(parent === "casa"){
-    agregarSpan(parent, casa);
-  } else if (parent === "jugador"){
-    agregarSpan(parent, jug1);
-  } else{
-    console.log("error argumento no valido: " + parent );
-  }
-
-}
 
 
- /* Esta funcion crea un elemento span dentro del parent 
-  * @param parent 
-  *           este paramentro representa el id div padre. se debe pasar 'jugador' o 'casa'. 
-  * @param arr
-  *           este parametro es el arreglo global de cartas de dicho parent.
-  */
 
-function agregarSpan(parent, arr){
 
-  // Se crea una nueva carta y se pushea al arreglo de casa
-  arr.push(newCarta(Math.floor(Math.random() * 52 + 1)));
-
-  // guardo el id de nuevo Span en una variable
-  var spanId = parent + arr.length;
-
-   // Se le añade como hijo el nuevo Span al div 
-  $("#"+parent).append("<span id='"+ spanId + "'></span>");
-
-  // Se le añade el número de la carta al nuevo Span
-  $("#"+spanId).html(arr[arr.length - 1].numero + " ");
-
-  
-
-  console.log(spanId +" "+arr[arr.length - 1].numero);
-}
