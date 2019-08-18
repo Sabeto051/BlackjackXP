@@ -23,22 +23,23 @@
       <span id="jugador1"></span>
       <span id="jugador2"></span>
     </div>
-    <button onclick="cartaAdcional()" disabled="true" id="cartaAdcional">carta adicional</button>
+    <button onclick="cartaAdcional()" disabled="true" id="cartaAdcional" class="btn-move">carta adicional</button>
+    <button onclick="plantar()" disabled="true" id="plantar"  class="btn-move">plantar</button>
 
     <div>
       <span id="Apuesta" >0</span>
     </div>
     <div >
-      <button id="Apostar10" onclick="apostar(10)">10</button>
-      <button id="Apostar20" onclick="apostar(20)">20</button>
-      <button id="Apostar50" onclick="apostar(50)">50</button>
-      <button id="Apostar100" onclick="apostar(100)">100</button>
+      <button id="Apostar10" class="btn-bet" onclick="apostar(10)">10</button>
+      <button id="Apostar20" class="btn-bet" onclick="apostar(20)">20</button>
+      <button id="Apostar50" class="btn-bet" onclick="apostar(50)">50</button>
+      <button id="Apostar100" class="btn-bet" onclick="apostar(100)">100</button>
     </div>
     <div>
-      <button id="Limpiar" onclick="limpiarapuesta()">Limpiar apuesta</button>
+      <button id="Limpiar" class="btn-bet" onclick="limpiarapuesta()">Limpiar apuesta</button>
     </div>
 
 
-     <button onclick="plantar()">plantar</button>
+    
   </body>
 </html>
