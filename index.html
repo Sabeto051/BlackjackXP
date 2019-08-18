@@ -10,7 +10,7 @@
     <p>Blackjack</p>
 
     <!-- El boton que llama la funcion myFunction, que genera las cartas -->
-    <button onclick="myFunction()">Try it</button>
+    <button onclick="myFunction()">Empezar juego</button>
 
     <!-- Los espacios donde se muestran los numeros de las cartas-->
     <div id="casa">
@@ -21,8 +21,22 @@
       <span id="jugador1"></span>
       <span id="jugador2"></span>
     </div>
-    <button onclick="cartaAdcional()">carta adicional</button>
+    <button onclick="cartaAdcional()" disabled="true" id="cartaAdcional">carta adicional</button>
+
+    <div>
+      <span id="Apuesta" >0</span>
+    </div>
+    <div >
+      <button id="Apostar10" onclick="apostar(10)">10</button>
+      <button id="Apostar20" onclick="apostar(20)">20</button>
+      <button id="Apostar50" onclick="apostar(50)">50</button>
+      <button id="Apostar100" onclick="apostar(100)">100</button>
+    </div>
+    <div>
+      <button id="Limpiar" onclick="limpiarapuesta()">Limpiar apuesta</button>
+    </div>
+
+
      <button onclick="plantar()">plantar</button>
   </body>
 </html>
-

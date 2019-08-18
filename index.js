@@ -1,10 +1,19 @@
 var casa = [];
 var jug1 = [];
 var victorioso=0;
-
+var apuestatotal=0;
 //funcion que genera 4 numeros aleatorios y los imprime en los parrafos demo1, 2, 3 y 4
 function myFunction() {
-  //Ciclo para generar los 4 números aleatorios
+  //Ciclo para generar los 4 números aleatoriosç
+  //Se desactivan los 5 botones de apuestas
+  //Y se activa el botón de adicionar carta
+  document.getElementById("Limpiar").disabled=true;
+  document.getElementById("Apostar10").disabled=true;
+  document.getElementById("Apostar100").disabled=true;
+  document.getElementById("Apostar50").disabled=true;
+  document.getElementById("Apostar20").disabled=true;
+  document.getElementById("cartaAdcional").disabled=false;
+
   for (i = 0; i < 4; i++) {
     /*se agrega el número en el HTML de acuerdo a la etiqueta demo*/
     if (i < 2) {
@@ -64,6 +73,15 @@ function cartaAdcional() {
     }
   
   }
+//Adiciona segun el boton pulsado a la apuesta
+function apostar(apuesta){
+  apuestatotal=apuestatotal+apuesta;
+  document.getElementById("Apuesta").innerHTML=apuestatotal;
+}
+function limpiarapuesta(){
+  apuestatotal=0;
+  document.getElementById("Apuesta").innerHTML=apuestatotal;
+}
   
   
    /* Esta funcion crea un elemento span dentro del parent 
