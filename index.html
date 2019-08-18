@@ -3,20 +3,22 @@
   <head>
     <!--Libreria de Jquery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
     <script src="./index.js"></script>
     <!-- El titulo de la pagina-->
     <p>Blackjack</p>
-
+    <div id="container">
     <!-- El boton que llama la funcion myFunction, que genera las cartas -->
     <button onclick="myFunction()">Empezar juego</button>
 
     <!-- Los espacios donde se muestran los numeros de las cartas-->
-    <div id="casa">
-      <span id="casa1"></span>
-      <span id="casa2"></span>
+    <div id="casa"> 
+    <span id="casa1"></span>
+    <span id="casa2"></span>
     </div>
+  
     <div id="jugador">
       <span id="jugador1"></span>
       <span id="jugador2"></span>

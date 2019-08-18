@@ -19,12 +19,18 @@ function myFunction() {
     if (i < 2) {
       casa.push(newCarta(Math.floor(Math.random() * 52 + 1)));
       $("#casa" + (i + 1)).html(casa[i].numero);
+
       //counterIdCasa = i + 1;
     } else {
       jug1.push(newCarta(Math.floor(Math.random() * 52 + 1)));
       $("#jugador" + (i - 1)).html(jug1[i - 2].numero);
     }
   }
+
+  
+
+  document.getElementById('casa').style.display = 'inline-block';
+  document.getElementById('jugador').style.display = 'block';
 }
 
 //Esta función genera una carta adicional al jugador
@@ -162,7 +168,7 @@ function newCarta(carta) {
     return -1;
   }
 
-  pintas = ["diamante", "corazon", "trevol", "pica"];
+  pintas = ["diamante", "corazon", "trebol", "pica"];
   // se obtiene una posición del array de pintas
   var posPinta = Math.floor((carta - 1) / 13);
   var pinta = pintas[posPinta];
