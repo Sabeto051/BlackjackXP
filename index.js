@@ -25,8 +25,8 @@ function myFunction() {
 
   
 
-  document.getElementById('casa').style.display = 'inline-block';
-  document.getElementById('jugador').style.display = 'block';
+  $("#casa").css("display", "inline-block") ;
+  $("#jugador").css("display", "block");
 }
 
 //Esta función genera una carta adicional al jugador
@@ -93,7 +93,7 @@ function cartaAdcional() {
     var spanId = parent + arr.length;
   
      // Se le añade como hijo el nuevo Span al div 
-    $("#"+parent).append("<span id='"+ spanId + "'></span>");
+    $("#"+parent).append("<span id='"+ spanId + "' class='cards'></span>");
   
     // Se le añade el número de la carta al nuevo Span
     $("#"+spanId).html(arr[arr.length - 1].numero + " ");
