@@ -9,7 +9,6 @@
 
 .rows{
   grid-column: 2 / 3;
-  
 }
 
 #casa {
@@ -25,11 +24,11 @@
     display:none;
   }
 
-  #trebol, #pica{
+  .negra{
     color:black;
   }
 
-  #diamante, #corazon{
+  .roja{
     color:red;
   }
 

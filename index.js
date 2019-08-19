@@ -2,6 +2,16 @@ var casa = [];
 var jug1 = [];
 var victorioso=0;
 var apuestatotal=0;
+
+var suits = {
+    DIAMANTE: "&#9830",
+    CORAZON: "&#9829",
+    TREBOL: "&#9827",
+    PICA: "&#9824"
+}
+
+
+
 //funcion que genera 4 numeros aleatorios y los imprime en los parrafos demo1, 2, 3 y 4
 function myFunction() {
   //Ciclo para generar los 4 números aleatoriosç
@@ -13,20 +23,30 @@ function myFunction() {
   for (i = 0; i < 4; i++) {
     /*se agrega el número en el HTML de acuerdo a la etiqueta demo*/
     if (i < 2) {
-      casa.push(newCarta(Math.floor(Math.random() * 52 + 1)));
-      $("#casa" + (i + 1)).html(casa[i].pintar + " " + casa[i].numero );
-
+      agregarCartasJuego(casa, i, "casa");
       //counterIdCasa = i + 1;
     } else {
-      jug1.push(newCarta(Math.floor(Math.random() * 52 + 1)));
-      $("#jugador" + (i - 1)).html(jug1[i - 2].pintar + " " + jug1[i - 2].numero );
+      agregarCartasJuego(jug1, i-2, "jugador");
     }
   }
 
-  
-
   $("#casa").css("display", "inline-block") ;
   $("#jugador").css("display", "block");
+}
+
+
+// se le pasa el arreglo de las carta y el numero y nombre para agregar las cartas
+function agregarCartasJuego(arr, i, name){
+  arr.push(newCarta(Math.floor(Math.random() * 52 + 1)));
+  $("#"+name+ (i + 1)).html(arr[i].pintar + " " + arr[i].numero );
+  var estilo = establecerEstiloCarta(arr[i].pintar);
+  $("#"+name+ (i + 1)).addClass(estilo);
+}
+
+// returna estilo de la cartas dependiendo de la pinta 
+function establecerEstiloCarta(pinta){
+  estilo=(pinta == suits.DIAMANTE || pinta == suits.CORAZON)? "roja" : "negra";
+  return estilo;
 }
 
 //Esta función genera una carta adicional al jugador
@@ -94,11 +114,20 @@ function cartaAdcional() {
   
      // Se le añade como hijo el nuevo Span al div 
     $("#"+parent).append("<span id='"+ spanId + "' class='cards'></span>");
+    
+    // guardo la ultitma posicion 
+    var last = arr.length - 1;
   
     // Se le añade el número de la carta al nuevo Span
-    $("#"+spanId).html(arr[arr.length - 1].numero + " ");
+    $("#"+spanId).html(arr[last].pintar + " " + arr[last].numero + " ");
+
+    //se obtiene el estilo de la carta 
+    var estilo = establecerEstiloCarta(arr[last].pintar);
+    
+    //adiciona la clase correcta dependiendo su pinta 
+    $("#"+spanId).addClass(estilo);
   
-    console.log(spanId +" "+arr[arr.length - 1].numero);
+    console.log(spanId +" "+arr[last].numero);
   }
 
 //Adiciona segun el boton pulsado a la apuesta
@@ -147,6 +176,7 @@ function contarCartasDeJugador(arr) {
         contador += arr[i].valor == 11 ? 1 :arr[i].valor;
       }
     }
+    console.log(arr);
 
     return contador;
 }
@@ -165,27 +195,19 @@ function newCarta(carta) {
     return -1;
   }
 
-  pintas = ["diamante", "corazon", "trebol", "pica"];
+  //pintas = ["diamante", "corazon", "trebol", "pica"];
   // se obtiene una posición del array de pintas
   var posPinta = Math.floor((carta - 1) / 13);
-  var pinta = pintas[posPinta];
-  var pintar= " ";
-  if (posPinta == 0){
-    pintar="&#9830";//pone el simbolito de diamante
-  }else if(posPinta==1){
-    pintar="&#9829";//pone el simbolito de corazon
-  }else if (posPinta == 2){
-    pintar="&#9827";//pone el simbolito de trebol
-  }else{
-    pintar="&#9824";//pone el simbolito de pica
-  }
+  //var pinta = pintas[posPinta];
+  var pintar= seleccionarPinta(posPinta);
+  
   // se obtiene un número "legible" para el computador
   var numValor = (carta - 1) % 13;
  //se valida si el numero de la carta es menor a 10 se deja el mismo valor sino se pone un valor de 10 
-  var valor = numero < 10? numero+1 :10;
+  var valor = numValor < 10? numValor+1 : 10;
   // se valida si el numero es 1  se deja 11 como valor inicial 
   var valor = valor == 1? 11:valor;
-  valores =["K","Q","J","10","9","8","7","6","5","4","3","2","A"]
+  valores =["A","2","3","4","5","6","7","8","9","10","J","Q","K"]
   //se le da un valor del array al numero obtenido 
   var numero = valores[numValor];
   return {
@@ -193,5 +215,65 @@ function newCarta(carta) {
     pintar,
     numero
   };
+}
+
+//seleciona la pinta dependiendo de la un numero de 1-4 
+function seleccionarPinta(posPinta ){
+  pintar = "";
+  switch (posPinta) {
+    case 0:
+      pintar = suits.DIAMANTE;
+      break;
+    case 1:
+        pintar = suits.CORAZON;
+        break;
+    case 2:
+      pintar = suits.TREBOL;
+      break;
+    case 3:
+      pintar = suits.PICA;
+      break;
+    default:
+        pintar ="Error";
+      break;
+  }
+  return pintar;
+}
+
+function plantar(){
+
+  //Contamos las cartas actuales del jugador y la casa
+  
+      var contadorCasa = contarCartas("casa");
+      var contadorJug = contarCartas("jugador");
+
+    // itero hasta que el contador de la casa sea menor 17 
+    // o que el contador del jugador sea mayor a 21
+    while( contadorCasa <= 16  &&  !(contadorJug > 21)){
+
+      agregarCarta("casa");
+
+      //actualizo los contadores 
+      contadorJug = contarCartas("jugador");
+      contadorCasa = contarCartas("casa");
+
+      console.log("jugador "+ contadorJug);
+      console.log("casa "+ contadorCasa);
+    }
+  
+    if( contadorCasa > 21 && contadorJug > 21){
+      alert("Ambos pierden");
+    } else if(contadorCasa > 21){   //Se revisa si la casa perdio
+      alert("La Casa pierde");
+    }else if (contadorJug > 21){    //Se revisa si el usuario perdio
+      alert("Jugador pierde!");
+    }
+
+    verificarGanador();
+    if(victorioso == 0){
+      var ganador = (contadorCasa > contadorJug)? "casa" : " jugador";
+      alert(ganador +" gano");
+    }
+
 }
 

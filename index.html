@@ -9,22 +9,8 @@
     <script src="./index.js"></script>
     <!-- El titulo de la pagina-->
     <p>Blackjack</p>
-    <div>
-      <ul>Apuesta Total
-      <p id="Apuesta" >0</p>
-      </ul>
-    </div>
-    <div>
-      <button id ="Apostar10" onclick="apostar(10)">10</button>
-      <button id ="Apostar20" onclick="apostar(20)">20</button>
-      <button id ="Apostar50" onclick="apostar(50)">50</button>
-      <button id ="Apostar100" onclick="apostar(100)">100</button>
-    </div>
-    <div>
-      <button id="Limpiar" onclick="limpiarapuesta()">Limpiar apuesta</button>
-    </div>
     
-    <div id="container">
+
     <!-- El boton que llama la funcion myFunction, que genera las cartas -->
     <button onclick="myFunction()">Empezar juego</button>
 
@@ -33,8 +19,8 @@
 
     <!-- Los espacios donde se muestran los numeros de las cartas-->
     <div id="casa" class="rows"> 
-    <span id="casa1" class="cards"></span>
-    <span id="casa2" class="cards"></span>
+      <span id="casa1" class="cards"></span>
+      <span id="casa2" class="cards"></span>
     </div>
   
     <div id="jugador" class="rows">
@@ -58,8 +44,6 @@
         <div>
           <button id="Limpiar" class="btn-bet" onclick="limpiarapuesta()">Limpiar apuesta</button>
         </div>
-    </div>
-
     </div>
 
 
