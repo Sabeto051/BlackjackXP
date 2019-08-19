@@ -2,10 +2,14 @@ var casa = [];
 var jug1 = [];
 var victorioso=0;
 var apuestatotal=0;
-
 //funcion que genera 4 numeros aleatorios y los imprime en los parrafos demo1, 2, 3 y 4
 function myFunction() {
-  //Ciclo para generar los 4 números aleatorios
+  //Ciclo para generar los 4 números aleatoriosç
+  //Se desactivan los 5 botones de apuestas
+  //Y se activa el botón de adicionar carta
+  $(".btn-move").prop( "disabled", false );
+  $(".btn-bet").prop( "disabled", true );
+
   for (i = 0; i < 4; i++) {
     /*se agrega el número en el HTML de acuerdo a la etiqueta demo*/
     if (i < 2) {
@@ -19,119 +23,136 @@ function myFunction() {
     }
   }
 
-/*  verificarGanador();
-  if(victorioso!=0){
-    if(victorioso==1){
-      alert("La casa gano")
-    }else if(victorioso==2){
-      alert("El jugador gano")();
+  
 
-  document.getElementById('casa').style.display = 'inline-block';
-  document.getElementById('jugador').style.display = 'block';
-*/  //Se desactivan los 5 botones de apuestas
-  //Y se activa el botón de adicionar carta
-  document.getElementById("Limpiar").disabled=true;
-  document.getElementById("Apostar10").disabled=true;
-  document.getElementById("Apostar20").disabled=true;
-  document.getElementById("Apostar50").disabled=true;
-  document.getElementById("Apostar100").disabled=true;
-  document.getElementById("cartaAdcional").disabled=false;
+  $("#casa").css("display", "inline-block") ;
+  $("#jugador").css("display", "block");
+}
 
-  }
-function verificarGanador() {
-//Verifica que ningún jugador se pase del conteo de 21 puntos
-// Aca segun el que se paso se dice quien gano y se le asigna un valor a victorioso
-  var contJug=contarCartas("jugador");
-  var contCasa=contarCartas("casa");
-   if(contJug>21){
-   victorioso=1;
-  }else if (contCasa>21){
-    victorioso=2;
-}
-}
 //Esta función genera una carta adicional al jugador
 function cartaAdcional() {
   //Antes de adicionar carta se verifica que no exista ganador
   verificarGanador();
- 
-    if(victorioso==0){
-      //Contamos las cartas actuales del jugador y la casa
-      var contadorCasa = contarCartas("casa");
-      var contadorJug = contarCartas("jugador");
-          // Si el contador de la casa es menor o igual a 16, se añade una nueva carta
-      if (contadorCasa <= 16) {
-        // Se crea un nuevo Span con id "casa#" donde '#' es el número siguiente de tags casa
-        let newSpan = document.createElement("SPAN");
-       newSpan.setAttribute("id", `${casa[casa.length-1]}`);
-        // Se crea una nueva carta y se pushea al arreglo de casa
-        casa.push(newCarta(Math.floor(Math.random() * 52 + 1)));
-        // Se le añade el número de la carta al nuevo Span
-        newSpan.innerHTML = " " + casa[casa.length - 1].pintar +" "+casa[casa.length - 1].numero ;
-        // Se le añade como hijo el nuevo Span al div de id 'casa'
-        document.getElementById("casa").appendChild(newSpan);
-      }
-  //Se revisa si el usuario perdio
-//      if (contadorJug > 21) alert("Jugador pierde!");
-      //Se le agrega una carta al usuario (en el arreglo y en el html).
-//      let newSpan = document.createElement("SPAN");
-//      newSpan.setAttribute("id", `${jug1[jug1.length-1].pinta}`);
-      jug1.push(newCarta(Math.floor(Math.random() * 52 + 1)));
-      $("#jugador").append("<span id='jugador" + jug1.length +"'></span>");
-      $("#jugador" + jug1.length).html(jug1[jug1.length - 1].pintar + " "+ jug1[jug1.length-1].numero);
-//      newSpan.innerHTML = " " + jug1[jug1.length - 1].numero ;
-      // Se le añade como hijo el nuevo Span al div de id 'jugador'
-//      document.getElementById("jugador").appendChild(newSpan);
-
-    //if (contadorCasa > 21) alert("La Casa pierde"); Se revisa si la casa perdio
-    }else if(victorioso==1){
+  if(victorioso!=0){
+    if(victorioso==1){
       alert("La casa gano")
     }else if(victorioso==2){
-      alert("El jugador gano")
-   }
+      alert("El jugador gano")}
+      else{
+        alert("Ambos perdieron")
+      }
+  }else{
+      //Se le agrega una carta al usuario (en el arreglo y en el html).
+      agregarCarta("jugador");
+    }
   }
-  //Adiciona segun el boton pulsado a la apuesta
-function apostar(monto){
-  apuestatotal=apuestatotal+monto;
-  document.getElementById("Apuesta").innerHTML=apuestatotal;
+
+  function verificarGanador() {
+    // Aca segun el que se paso se dice quien gano y se le asigna un valor a victorioso
+    var contCasa=contarCartas("casa");
+    var contJug=contarCartas("jugador");
+    if (contJug>21&&contCasa>21){
+      victorioso=3;
+    }else if (contCasa>21){
+      victorioso=2;
+    }else if(contJug>21)
+     victorioso=1;
+  
+     console.log("casa "+ contCasa);
+     console.log("jugador "+ contJug);
+  }
+
+
+  //Se le agrega una carta al div parent que se especifique 
+  // casa o judagaor 
+  function agregarCarta(parent){
+    if(parent === "casa"){
+      agregarSpan(parent, casa);
+    } else if (parent === "jugador"){
+      agregarSpan(parent, jug1);
+    } else{
+      console.log("error argumento no valido: " + parent );
+    }
+  
+  }
+  
+  
+   /* Esta funcion crea un elemento span dentro del parent 
+    * @param parent 
+    *           este paramentro representa el id div padre. se debe pasar 'jugador' o 'casa'. 
+    * @param arr
+    *           este parametro es el arreglo global de cartas de dicho parent.
+    */
+  
+  function agregarSpan(parent, arr){
+  
+    // Se crea una nueva carta y se pushea al arreglo de casa
+    arr.push(newCarta(Math.floor(Math.random() * 52 + 1)));
+  
+    // guardo el id de nuevo Span en una variable
+    var spanId = parent + arr.length;
+  
+     // Se le añade como hijo el nuevo Span al div 
+    $("#"+parent).append("<span id='"+ spanId + "' class='cards'></span>");
+  
+    // Se le añade el número de la carta al nuevo Span
+    $("#"+spanId).html(arr[arr.length - 1].numero + " ");
+  
+    console.log(spanId +" "+arr[arr.length - 1].numero);
+  }
+
+//Adiciona segun el boton pulsado a la apuesta
+function apostar(apuesta){
+  apuestatotal=apuestatotal+apuesta;
+  $("#Apuesta").innerHTML=apuestatotal;
 }
 function limpiarapuesta(){
   apuestatotal=0;
-  document.getElementById("Apuesta").innerHTML=apuestatotal;
+  $("#Apuesta").innerHTML=apuestatotal;
 }
 
 //Retorna la suma de las cartas
 function contarCartas(jugador) {
   
   var contador = 0;
+  
   //Si recibe el parametro jugador, suma los numeros de las cartas del arreglo jug1
   if (jugador == "jugador") {
     // se cuentas las carta del jugador 
    contador = contarCartasDeJugador(jug1);
+
   //Si recibe el parametro casa, suma los numeros de las cartas del arreglo casa
   } else if (jugador == "casa") {
      // se cuentas las carta del jugador 
     contador = contarCartasDeJugador(casa);
+
   } else return -1; //Si recibe un parametro invalido, retorna -1. ES UN ERROR
   return contador;
 }
+
+
 function contarCartasDeJugador(arr) {
     // se inicializa un contador 
     var contador = 0;
+
     // se itera la cartas de jugador y se suman 
     for (i = 0; i < arr.length; i++) {
       contador += arr[i].valor;
     }
-    // se itera la cartas de jugador  y se suman teniendo cuenta que las cartas son mayores  23 a se cambia el 11 por el 1
+
+    // se itera la cartas de jugador  y se suman teniendo cuenta que las cartas son mayores  21 a se cambia el 11 por el 1
     if(contador > 21){
       contador = 0;
       for (i = 0; i < arr.length; i++) {
-        contador += arr[i].valor == 11 ? 1 :jug1[i].valor;
+        contador += arr[i].valor == 11 ? 1 :arr[i].valor;
       }
     }
-    console.log('contador '+ contador);
+
     return contador;
 }
-/*
+
+
+/* 
     newCarta(carta)
     función que recibe un int
     función que retorna un objeto con atributos (str)pinta, (int)numero
@@ -144,7 +165,7 @@ function newCarta(carta) {
     return -1;
   }
 
-  pintas =["diamante", "corazon","trebol","pica"]
+  pintas = ["diamante", "corazon", "trebol", "pica"];
   // se obtiene una posición del array de pintas
   var posPinta = Math.floor((carta - 1) / 13);
   var pinta = pintas[posPinta];
@@ -173,3 +194,4 @@ function newCarta(carta) {
     numero
   };
 }
+

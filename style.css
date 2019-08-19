@@ -1,19 +1,28 @@
 #container{
+    width: 100%;
     position: absolute;
+    display: grid;
+    grid-row-gap: 6px;
+    align-content: center;
+    
+}
 
+.rows{
+  grid-column: 2 / 3;
+  
 }
 
 #casa {
     position:relative;
-    /*display:none;*/
+    display:none;
+   
 }
 
   /*#jugador:first-child {margin-left:0;}*/
 
   #jugador{
-    width: 100%;
     position: relative;
-    /*display:none;*/
+    display:none;
   }
 
   #trebol, #pica{
@@ -24,7 +33,7 @@
     color:red;
   }
 
-span {
+.cards{
     background:#fff;
     border: 1px solid gray;
     border-radius:4px;
