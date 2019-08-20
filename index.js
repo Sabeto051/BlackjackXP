@@ -43,7 +43,7 @@ function agregarCartasJuego(arr, i, name){
   $("#"+name+ (i + 1)).addClass(estilo);
 }
 
-// returna estilo de la cartas dependiendo de la pinta 
+// returna estilo de la cartas dependiendo de la pinta
 function establecerEstiloCarta(pinta){
   estilo=(pinta == suits.DIAMANTE || pinta == suits.CORAZON)? "roja" : "negra";
   return estilo;
@@ -77,14 +77,14 @@ function cartaAdcional() {
       victorioso=2;
     }else if(contJug>21)
      victorioso=1;
-  
+
      console.log("casa "+ contCasa);
      console.log("jugador "+ contJug);
   }
 
 
-  //Se le agrega una carta al div parent que se especifique 
-  // casa o judagaor 
+  //Se le agrega una carta al div parent que se especifique
+  // casa o judagaor
   function agregarCarta(parent){
     if(parent === "casa"){
       agregarSpan(parent, casa);
@@ -93,66 +93,66 @@ function cartaAdcional() {
     } else{
       console.log("error argumento no valido: " + parent );
     }
-  
+
   }
-  
-  
-   /* Esta funcion crea un elemento span dentro del parent 
-    * @param parent 
-    *           este paramentro representa el id div padre. se debe pasar 'jugador' o 'casa'. 
+
+
+   /* Esta funcion crea un elemento span dentro del parent
+    * @param parent
+    *           este paramentro representa el id div padre. se debe pasar 'jugador' o 'casa'.
     * @param arr
     *           este parametro es el arreglo global de cartas de dicho parent.
     */
-  
+
   function agregarSpan(parent, arr){
-  
+
     // Se crea una nueva carta y se pushea al arreglo de casa
     arr.push(newCarta(Math.floor(Math.random() * 52 + 1)));
-  
+
     // guardo el id de nuevo Span en una variable
     var spanId = parent + arr.length;
-  
-     // Se le añade como hijo el nuevo Span al div 
+
+     // Se le añade como hijo el nuevo Span al div
     $("#"+parent).append("<span id='"+ spanId + "' class='cards'></span>");
-    
-    // guardo la ultitma posicion 
+
+    // guardo la ultitma posicion
     var last = arr.length - 1;
-  
+
     // Se le añade el número de la carta al nuevo Span
     $("#"+spanId).html(arr[last].pintar + " " + arr[last].numero + " ");
 
-    //se obtiene el estilo de la carta 
+    //se obtiene el estilo de la carta
     var estilo = establecerEstiloCarta(arr[last].pintar);
-    
-    //adiciona la clase correcta dependiendo su pinta 
+
+    //adiciona la clase correcta dependiendo su pinta
     $("#"+spanId).addClass(estilo);
-  
+
     console.log(spanId +" "+arr[last].numero);
   }
 
 //Adiciona segun el boton pulsado a la apuesta
 function apostar(apuesta){
   apuestatotal=apuestatotal+apuesta;
-  $("#Apuesta").innerHTML=apuestatotal;
+  document.getElementById("Apuesta").innerHTML=apuestatotal;
 }
 function limpiarapuesta(){
   apuestatotal=0;
-  $("#Apuesta").innerHTML=apuestatotal;
+  document.getElementByI("Apuesta").innerHTML=apuestatotal;
 }
 
 //Retorna la suma de las cartas
 function contarCartas(jugador) {
-  
+
   var contador = 0;
-  
+
   //Si recibe el parametro jugador, suma los numeros de las cartas del arreglo jug1
   if (jugador == "jugador") {
-    // se cuentas las carta del jugador 
+    // se cuentas las carta del jugador
    contador = contarCartasDeJugador(jug1);
 
   //Si recibe el parametro casa, suma los numeros de las cartas del arreglo casa
   } else if (jugador == "casa") {
-     // se cuentas las carta del jugador 
+     // se cuentas las carta del jugador
     contador = contarCartasDeJugador(casa);
 
   } else return -1; //Si recibe un parametro invalido, retorna -1. ES UN ERROR
@@ -161,10 +161,10 @@ function contarCartas(jugador) {
 
 
 function contarCartasDeJugador(arr) {
-    // se inicializa un contador 
+    // se inicializa un contador
     var contador = 0;
 
-    // se itera la cartas de jugador y se suman 
+    // se itera la cartas de jugador y se suman
     for (i = 0; i < arr.length; i++) {
       contador += arr[i].valor;
     }
@@ -182,7 +182,7 @@ function contarCartasDeJugador(arr) {
 }
 
 
-/* 
+/*
     newCarta(carta)
     función que recibe un int
     función que retorna un objeto con atributos (str)pinta, (int)numero
@@ -200,15 +200,15 @@ function newCarta(carta) {
   var posPinta = Math.floor((carta - 1) / 13);
   //var pinta = pintas[posPinta];
   var pintar= seleccionarPinta(posPinta);
-  
+
   // se obtiene un número "legible" para el computador
   var numValor = (carta - 1) % 13;
- //se valida si el numero de la carta es menor a 10 se deja el mismo valor sino se pone un valor de 10 
+ //se valida si el numero de la carta es menor a 10 se deja el mismo valor sino se pone un valor de 10
   var valor = numValor < 10? numValor+1 : 10;
-  // se valida si el numero es 1  se deja 11 como valor inicial 
+  // se valida si el numero es 1  se deja 11 como valor inicial
   var valor = valor == 1? 11:valor;
   valores =["A","2","3","4","5","6","7","8","9","10","J","Q","K"]
-  //se le da un valor del array al numero obtenido 
+  //se le da un valor del array al numero obtenido
   var numero = valores[numValor];
   return {
     valor,
@@ -217,7 +217,7 @@ function newCarta(carta) {
   };
 }
 
-//seleciona la pinta dependiendo de la un numero de 1-4 
+//seleciona la pinta dependiendo de la un numero de 1-4
 function seleccionarPinta(posPinta ){
   pintar = "";
   switch (posPinta) {
@@ -243,24 +243,24 @@ function seleccionarPinta(posPinta ){
 function plantar(){
 
   //Contamos las cartas actuales del jugador y la casa
-  
+
       var contadorCasa = contarCartas("casa");
       var contadorJug = contarCartas("jugador");
 
-    // itero hasta que el contador de la casa sea menor 17 
+    // itero hasta que el contador de la casa sea menor 17
     // o que el contador del jugador sea mayor a 21
     while( contadorCasa <= 16  &&  !(contadorJug > 21)){
 
       agregarCarta("casa");
 
-      //actualizo los contadores 
+      //actualizo los contadores
       contadorJug = contarCartas("jugador");
       contadorCasa = contarCartas("casa");
 
       console.log("jugador "+ contadorJug);
       console.log("casa "+ contadorCasa);
     }
-  
+
     if( contadorCasa > 21 && contadorJug > 21){
       alert("Ambos pierden");
     } else if(contadorCasa > 21){   //Se revisa si la casa perdio
@@ -276,4 +276,3 @@ function plantar(){
     }
 
 }
-
