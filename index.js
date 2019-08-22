@@ -5,6 +5,7 @@ var apuestatotal=0;
 
 //funcion que genera 4 numeros aleatorios y los imprime en los parrafos demo1, 2, 3 y 4
 function myFunction() {
+
   //Ciclo para generar los 4 números aleatorios
   for (i = 0; i < 4; i++) {
     /*se agrega el número en el HTML de acuerdo a la etiqueta demo*/
@@ -18,8 +19,7 @@ function myFunction() {
       $("#jugador" + (i - 1)).html(jug1[i - 2].pintar + " " + jug1[i - 2].numero );
     }
   }
-
-/*  verificarGanador();
+  /*  verificarGanador();
   if(victorioso!=0){
     if(victorioso==1){
       alert("La casa gano")
@@ -36,8 +36,8 @@ function myFunction() {
   document.getElementById("Apostar50").disabled=true;
   document.getElementById("Apostar100").disabled=true;
   document.getElementById("cartaAdcional").disabled=false;
+}
 
-  }
 function verificarGanador() {
 //Verifica que ningún jugador se pase del conteo de 21 puntos
 // Aca segun el que se paso se dice quien gano y se le asigna un valor a victorioso
@@ -58,18 +58,6 @@ function cartaAdcional() {
       //Contamos las cartas actuales del jugador y la casa
       var contadorCasa = contarCartas("casa");
       var contadorJug = contarCartas("jugador");
-//          Se revisa si el usuario perdio
-      if (contadorJug > 21) alert("Jugador pierde!");
-  //Se le agrega una carta al usuario (en el arreglo y en el html).
-//      let newSpan = document.createElement("SPAN");
-//      newSpan.setAttribute("id", `${jug1[jug1.length-1].pinta}`);
-      jug1.push(newCarta(Math.floor(Math.random() * 52 + 1)));
-      $("#jugador").append("<span id='jugador" + jug1.length +"'></span>");
-      $("#jugador" + jug1.length).html(jug1[jug1.length - 1].pintar + " "+ jug1[jug1.length-1].numero);
-//      newSpan.innerHTML = " " + jug1[jug1.length - 1].numero ;
-      // Se le añade como hijo el nuevo Span al div de id 'jugador'
-//      document.getElementById("jugador").appendChild(newSpan);
-
           // Si el contador de la casa es menor o igual a 16, se añade una nueva carta
       if (contadorCasa <= 16) {
         // Se crea un nuevo Span con id "casa#" donde '#' es el número siguiente de tags casa
@@ -82,7 +70,18 @@ function cartaAdcional() {
         // Se le añade como hijo el nuevo Span al div de id 'casa'
         document.getElementById("casa").appendChild(newSpan);
       }
-    
+  //Se revisa si el usuario perdio
+      if (contadorJug > 21) alert("Jugador pierde!");
+      //Se le agrega una carta al usuario (en el arreglo y en el html).
+//      let newSpan = document.createElement("SPAN");
+//      newSpan.setAttribute("id", `${jug1[jug1.length-1].pinta}`);
+      jug1.push(newCarta(Math.floor(Math.random() * 52 + 1)));
+      $("#jugador").append("<span id='jugador" + jug1.length +"'></span>");
+      $("#jugador" + jug1.length).html(jug1[jug1.length - 1].pintar + " "+ jug1[jug1.length-1].numero);
+//      newSpan.innerHTML = " " + jug1[jug1.length - 1].numero ;
+      // Se le añade como hijo el nuevo Span al div de id 'jugador'
+//      document.getElementById("jugador").appendChild(newSpan);
+
     //if (contadorCasa > 21) alert("La Casa pierde"); Se revisa si la casa perdio
     }else if(victorioso==1){
       alert("La casa gano")
@@ -103,7 +102,8 @@ function limpiarapuesta(){
 //Retorna la suma de las cartas
 function contarCartas(jugador) {
   
-  var contador = 0;
+  var contador =0;
+
   //Si recibe el parametro jugador, suma los numeros de las cartas del arreglo jug1
   if (jugador == "jugador") {
     // se cuentas las carta del jugador 
@@ -115,6 +115,7 @@ function contarCartas(jugador) {
   } else return -1; //Si recibe un parametro invalido, retorna -1. ES UN ERROR
   return contador;
 }
+
 function contarCartasDeJugador(arr) {
     // se inicializa un contador 
     var contador = 0;
@@ -174,3 +175,4 @@ function newCarta(carta) {
     numero
   };
 }
+
