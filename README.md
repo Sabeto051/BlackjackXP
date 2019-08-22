@@ -25,8 +25,8 @@ La mejor jugada es conseguir 21 con solo dos cartas, esto es con un As más cart
 
 
 ## Recursos
-* recurso 1 | [https://repository.eia.edu.co/](https://repository.eia.edu.co/bitstream/11190/1811/1/PalacioMaria_2016_PropuestaRidesharingEstrategia.pdf)
-* costum google map | [https://codyhouse.co/gem/custom-google-map](https://codyhouse.co/gem/custom-google-map)
+* recurso 1 | [link](#)
+* costum google map | [https://codyhouse.co/gem/custom-google-map](#)
 
 
 ## Contribuir
