@@ -58,6 +58,7 @@ function cartaAdcional() {
       //Contamos las cartas actuales del jugador y la casa
       var contadorCasa = contarCartas("casa");
       var contadorJug = contarCartas("jugador");
+      if (contadorJug > 21) alert("Jugador pierde!");
           // Si el contador de la casa es menor o igual a 16, se añade una nueva carta
       if (contadorCasa <= 16) {
         // Se crea un nuevo Span con id "casa#" donde '#' es el número siguiente de tags casa
@@ -71,7 +72,6 @@ function cartaAdcional() {
         document.getElementById("casa").appendChild(newSpan);
       }
   //Se revisa si el usuario perdio
-      if (contadorJug > 21) alert("Jugador pierde!");
       //Se le agrega una carta al usuario (en el arreglo y en el html).
 //      let newSpan = document.createElement("SPAN");
 //      newSpan.setAttribute("id", `${jug1[jug1.length-1].pinta}`);
