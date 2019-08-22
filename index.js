@@ -26,6 +26,7 @@ function myFunction() {
     } else {
       agregarCartasJuego(jug1, i - 2, 'jugador')
     }
+    ocultarCarta('casa',1)
   }
 
   $('#casa').css('display', 'inline-block')
@@ -110,6 +111,10 @@ function agregarSpan(parent, arr) {
   // guardo la ultitma posicion
   var last = arr.length - 1
 
+  decorarCarta(spanId, arr, last);
+  
+}
+function decorarCarta(spanId, arr, last) {
   // Se le añade el número de la carta al nuevo Span
   $('#' + spanId).html(arr[last].pintar + ' ' + arr[last].numero + ' ')
 
@@ -120,6 +125,7 @@ function agregarSpan(parent, arr) {
   $('#' + spanId).addClass(estilo)
 
   console.log(spanId + ' ' + arr[last].numero)
+  
 }
 
 //Adiciona segun el boton pulsado a la apuesta
@@ -262,4 +268,17 @@ function plantar() {
     var ganador = contadorCasa > contadorJug ? 'casa' : ' jugador'
     alert(ganador + ' gano')
   }
+}
+
+function ocultarCarta(jugador,posicion) {
+  var spanId = parent + posicion;
+  $('#' + spanId).html();
+  $('#' + spanId).addClass('oculta')
+}
+
+function mostrarCarta(jugador,posicion) {
+  var spanId = parent + posicion;
+  $('#' + spanId).removeClass('oculta');
+  var arr = (jugador == 'casa')? casa: jug1;
+  decorarCarta(spanId, arr, posicion);
 }
