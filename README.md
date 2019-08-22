@@ -26,7 +26,7 @@ La mejor jugada es conseguir 21 con solo dos cartas, esto es con un As más cart
 
 ## Recursos
 * recurso 1 | [link](#)
-* costum google map | [link](#)
+* recurso 2 | [link](#)
 
 
 ## Contribuir
