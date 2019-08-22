@@ -5,7 +5,7 @@
 
 #casa {
     position:relative;
-    /*display:none;*/
+    display:none;
 }
 
   /*#jugador:first-child {margin-left:0;}*/
@@ -13,7 +13,7 @@
   #jugador{
     width: 100%;
     position: relative;
-    /*display:none;*/
+    display:none;
   }
 
   #trebol, #pica{

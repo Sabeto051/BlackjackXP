@@ -58,6 +58,18 @@ function cartaAdcional() {
       //Contamos las cartas actuales del jugador y la casa
       var contadorCasa = contarCartas("casa");
       var contadorJug = contarCartas("jugador");
+//          Se revisa si el usuario perdio
+      if (contadorJug > 21) alert("Jugador pierde!");
+  //Se le agrega una carta al usuario (en el arreglo y en el html).
+//      let newSpan = document.createElement("SPAN");
+//      newSpan.setAttribute("id", `${jug1[jug1.length-1].pinta}`);
+      jug1.push(newCarta(Math.floor(Math.random() * 52 + 1)));
+      $("#jugador").append("<span id='jugador" + jug1.length +"'></span>");
+      $("#jugador" + jug1.length).html(jug1[jug1.length - 1].pintar + " "+ jug1[jug1.length-1].numero);
+//      newSpan.innerHTML = " " + jug1[jug1.length - 1].numero ;
+      // Se le añade como hijo el nuevo Span al div de id 'jugador'
+//      document.getElementById("jugador").appendChild(newSpan);
+
           // Si el contador de la casa es menor o igual a 16, se añade una nueva carta
       if (contadorCasa <= 16) {
         // Se crea un nuevo Span con id "casa#" donde '#' es el número siguiente de tags casa
@@ -70,18 +82,7 @@ function cartaAdcional() {
         // Se le añade como hijo el nuevo Span al div de id 'casa'
         document.getElementById("casa").appendChild(newSpan);
       }
-  //Se revisa si el usuario perdio
-//      if (contadorJug > 21) alert("Jugador pierde!");
-      //Se le agrega una carta al usuario (en el arreglo y en el html).
-//      let newSpan = document.createElement("SPAN");
-//      newSpan.setAttribute("id", `${jug1[jug1.length-1].pinta}`);
-      jug1.push(newCarta(Math.floor(Math.random() * 52 + 1)));
-      $("#jugador").append("<span id='jugador" + jug1.length +"'></span>");
-      $("#jugador" + jug1.length).html(jug1[jug1.length - 1].pintar + " "+ jug1[jug1.length-1].numero);
-//      newSpan.innerHTML = " " + jug1[jug1.length - 1].numero ;
-      // Se le añade como hijo el nuevo Span al div de id 'jugador'
-//      document.getElementById("jugador").appendChild(newSpan);
-
+    
     //if (contadorCasa > 21) alert("La Casa pierde"); Se revisa si la casa perdio
     }else if(victorioso==1){
       alert("La casa gano")
