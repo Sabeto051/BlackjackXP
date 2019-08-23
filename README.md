@@ -26,4 +26,4 @@ La mejor jugada es conseguir 21 con solo dos cartas, esto es con un As más cart
 ## Contribuir
 Por favor lee el [CONTRIBUTING.md]() para detalles de nuestro código de conducta, y el proceso para enviarnos pull requests.
 ## Licencia
-Este proyecto está licenciado bajo la Licencia Apache License 2.0  - vea el archivo [LICENSE.md](LICENSE.md) para más detalles
+Este proyecto está licenciado bajo la Licencia MIT  - vea el archivo [LICENSE.md](LICENSE.md) para más detalles
