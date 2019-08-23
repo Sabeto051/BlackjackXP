@@ -18,12 +18,6 @@ La mejor jugada es conseguir 21 con solo dos cartas, esto es con un As más cart
 * jquery
 
 
-### Importar Un Proyecto
-
-## Instrucciones de uso
- 
-
-
 ## Recursos
 * jquery doc's | [https://api.jquery.com](https://api.jquery.com)
 * w3school | [https://www.w3schools.com/jquery/default.asp](https://www.w3schools.com/jquery/default.asp)
