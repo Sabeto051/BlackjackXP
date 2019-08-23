@@ -14,8 +14,8 @@ La mejor jugada es conseguir 21 con solo dos cartas, esto es con un As más cart
 
 ## Comenzando :rocket:
 ### Requerimientos
-* requerimiento 1
-* requerimiento 2
+* vanilla JS 
+* jquery
 
 
 ### Importar Un Proyecto
