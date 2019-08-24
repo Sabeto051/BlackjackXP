@@ -32,10 +32,6 @@
     color:red;
   }
 
-  .oculta{
-    
-  }
-
 .cards{
     background:#fff;
     border: 1px solid gray;
@@ -53,6 +49,10 @@
     margin-right:-1em;
    font-family:serif;
    
+  }
+
+  .oculta{
+    background-color:red;
   }
 
 

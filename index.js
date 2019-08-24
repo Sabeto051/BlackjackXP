@@ -240,6 +240,7 @@ function plantar() {
   var contadorCasa = contarCartas('casa')
   var contadorJug = contarCartas('jugador')
 
+  mostrarCarta("casa",1);
   // itero hasta que el contador de la casa sea menor 17
   // o que el contador del jugador sea mayor a 21
   while (contadorCasa <= 16 && !(contadorJug > 21)) {
@@ -271,13 +272,13 @@ function plantar() {
 }
 
 function ocultarCarta(jugador,posicion) {
-  var spanId = parent + posicion;
-  $('#' + spanId).html();
-  $('#' + spanId).addClass('oculta')
+  var spanId = jugador + posicion;
+  $('#' + spanId).html("");
+  $('#' + spanId).addClass('oculta');
 }
 
 function mostrarCarta(jugador,posicion) {
-  var spanId = parent + posicion;
+  var spanId =  jugador + posicion;
   $('#' + spanId).removeClass('oculta');
   var arr = (jugador == 'casa')? casa: jug1;
   decorarCarta(spanId, arr, posicion);
