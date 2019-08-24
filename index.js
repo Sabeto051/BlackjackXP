@@ -84,6 +84,8 @@ function verificarGanador() {
 function agregarCarta(parent) {
   if (parent === 'casa') {
     agregarSpan(parent, casa)
+    var spanId = parent + casa.length
+    $('#' + spanId).css('transform', 'rotate(3deg)');
   } else if (parent === 'jugador') {
     agregarSpan(parent, jug1)
   } else {
@@ -281,5 +283,6 @@ function mostrarCarta(jugador,posicion) {
   var spanId =  jugador + posicion;
   $('#' + spanId).removeClass('oculta');
   var arr = (jugador == 'casa')? casa: jug1;
-  decorarCarta(spanId, arr, posicion);
+  decorarCarta(spanId, arr, posicion-1);
+  console.log(spanId);
 }
