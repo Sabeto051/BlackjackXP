@@ -6,44 +6,47 @@
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
-    <script src="./index.js"></script>
-    <!-- El titulo de la pagina-->
-    <p>Blackjack</p>
     <div>
-      <ul>Apuesta Total
-      <p id="Apuesta" >0</p>
-      </ul>
-    </div>
-    <div>
-      <button id ="Apostar10" onclick="apostar(10)">10</button>
-      <button id ="Apostar20" onclick="apostar(20)">20</button>
-      <button id ="Apostar50" onclick="apostar(50)">50</button>
-      <button id ="Apostar100" onclick="apostar(100)">100</button>
-    </div>
-    <div>
-      <button id="Limpiar" onclick="limpiarapuesta()">Limpiar apuesta</button>
-    </div>
-    
-    <div id="container">
-    <!-- El boton que llama la funcion myFunction, que genera las cartas -->
-    <button onclick="myFunction()">Try it</button>
-    
-        <button onclick="cartaAdcional()">Carta adicional</button>
-        <button onclick="contarCartas('jugador')">Contar</button>
-        
-    <!-- Los espacios donde se muestran los numeros de las cartas-->
-    <div id="casa"> 
-    <span id="casa1"> </span>
-    <span id="casa2"></span>
-    </div>
-  
-    <div id="jugador">
-      <span id="jugador1"></span>
-      <span id="jugador2"></span>
-    </div>
-  </div> 
+      <script src="./index.js"></script>
+      <!-- El titulo de la pagina-->
+      <p>Blackjack</p>
+      
 
- </body>
+      <!-- El boton que llama la funcion myFunction, que genera las cartas -->
+      <button onclick="myFunction()">Empezar juego</button>
 
+      
+      <div id="container">
+
+      <!-- Los espacios donde se muestran los numeros de las cartas-->
+      <div id="casa" class="rows"> 
+        <span id="casa1" class="cards rot-uno"></span>
+        <span id="casa2" class="cards rot"></span>
+      </div>
+    
+      <div id="jugador" class="rows">
+        <span id="jugador1"class="cards"></span>
+        <span id="jugador2"class="cards"></span>
+      </div>
+
+      <div class="rows">
+          <button onclick="cartaAdcional()" disabled="true" id="cartaAdcional" class="btn-move">carta adicional</button>
+          <button onclick="plantar()" disabled="true" id="plantar"  class="btn-move">plantar</button>
+      
+          <div>
+            <span id="Apuesta" >0</span>
+          </div>
+          <div >
+            <button id="Apostar10" class="btn-bet" onclick="apostar(10)">10</button>
+            <button id="Apostar20" class="btn-bet" onclick="apostar(20)">20</button>
+            <button id="Apostar50" class="btn-bet" onclick="apostar(50)">50</button>
+            <button id="Apostar100" class="btn-bet" onclick="apostar(100)">100</button>
+          </div>
+          <div>
+            <button id="Limpiar" class="btn-bet" onclick="limpiarapuesta()">Limpiar apuesta</button>
+          </div>
+      </div>
+
+    </div>
+  </body>
 </html>
-
